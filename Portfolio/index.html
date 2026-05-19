@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Hannan | Software Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Modern Tech/Cyber Theme Variables */
+        :root {
+            --bg-color: #030305;
+            --surface-color: rgba(20, 20, 30, 0.6);
+            --glass-border: rgba(106, 90, 205, 0.3);
+            --accent-slate: #6A5ACD;
+            --accent-neon: #00f3ff;
+            --text-main: #f0f0f0;
+            --text-muted: #a0a0b0;
+            --font-main: 'Poppins', sans-serif;
+            --font-code: 'Fira Code', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(106, 90, 205, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 243, 255, 0.1), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        /* Sticky Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(3, 3, 5, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: var(--font-code);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-neon);
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-neon);
+        }
+
+        /* General Section Styling */
+        section {
+            padding: 8rem 10% 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--accent-slate);
+            font-family: var(--font-code);
+        }
+
+        /* Hero Section - Split Layout */
+        #home {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding-top: 12rem;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-greeting {
+            font-family: var(--font-code);
+            color: var(--accent-neon);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h2 {
+            font-size: 2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 8px;
+            font-family: var(--font-code);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--accent-slate);
+            color: white;
+            border: 2px solid var(--accent-slate);
+            box-shadow: 0 0 15px rgba(106, 90, 205, 0.4);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            box-shadow: 0 0 25px rgba(106, 90, 205, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent-neon);
+            border: 2px solid var(--accent-neon);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.4);
+        }
+
+        .hero-visual {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .profile-img-container {
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            padding: 10px;
+            background: linear-gradient(45deg, var(--accent-slate), var(--accent-neon));
+            animation: pulse-border 3s infinite;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #1a1a2e; /* Fallback color */
+            background-image: url('https://via.placeholder.com/350/1a1a2e/6A5ACD?text=A.H'); /* Replace with your image */
+            background-size: cover;
+            background-position: center;
+            border: 5px solid var(--bg-color);
+        }
+        .profile-img>img{
+            border-radius: 100%;
+        }
+
+        /* Glassmorphism Cards */
+        .glass-panel {
+            background: var(--surface-color);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .glass-panel:hover {
+            border-color: var(--accent-neon);
+            transform: translateY(-5px);
+        }
+
+        /* Skills Bento Box */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(106, 90, 205, 0.1);
+            border: 1px solid rgba(106, 90, 205, 0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-family: var(--font-code);
+            font-weight: 600;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 243, 255, 0.1);
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            color: var(--accent-neon);
+        }
+
+        /* Visual Timeline for Education */
+        .timeline {
+            position: relative;
+            max-width: 80%;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--glass-border);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 80%;
+        }
+
+        .timeline-item.left { left: -29%; }
+        .timeline-item.right { left: 50%; }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            right: -10px;
+            background-color: var(--bg-color);
+            border: 4px solid var(--accent-slate);
+            top: 25px;
+            border-radius: 50%;
+            z-index: 1;
+            transition: all 0.3s;
+        }
+
+        .timeline-item.right::after {
+            left: -10px;
+        }
+
+        .timeline-item:hover::after {
+            background-color: var(--accent-neon);
+            border-color: var(--accent-neon);
+            box-shadow: 0 0 10px var(--accent-neon);
+        }
+
+        .timeline-content {
+            padding: 1.5rem;
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            position: relative;
+            
+        }
+
+        .timeline-date {
+            font-family: var(--font-code);
+            color: var(--accent-neon);
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+        }
+
+        /* Projects Grid */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-tech {
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--accent-slate);
+            margin-bottom: 1rem;
+        }
+
+        .project-card ul {
+            color: var(--text-muted);
+            margin-left: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Certifications Flexbox */
+        .cert-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .cert-card {
+            flex: 1 1 400px;
+            text-align: center;
+            border-top: 4px solid var(--accent-slate);
+        }
+
+        /* Animations */
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(106, 90, 205, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(106, 90, 205, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(106, 90, 205, 0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Adjustments */
+        @media screen and (max-width: 900px) {
+            #home {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 8rem;
+            }
+            .action-buttons {
+                justify-content: center;
+            }
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item.right { left: 0; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 21px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#" class="logo">A.H<span>_</span></a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#education">Education</a>
+        </div>
+    </nav>
+
+    <section id="home">
+        <div class="hero-content fade-in">
+            <span class="hero-greeting">> SYSTEM_READY: Hello, World.</span>
+            <h1>Abdul Hannan </h1>
+            <h2>Full Stack Web Developer  &<br>Computer Scientist</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px;">
+                📍 Lahore, Pakistan <br>
+                ✉️ i.abdulhannan05@gmail.com <br>
+                📞 0330 8533444             
+            </p>
+            <div class="action-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+        <div class="hero-visual fade-in">
+            <div class="profile-img-container">
+                
+                <div class="profile-img"><img src="/Images/blue profile.png"  width="100%" height="100%"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title"><span>01.</span> Professional Summary</h2>
+        <div class="glass-panel fade-in" style="font-size: 1.1rem; line-height: 1.8;">
+            <p>I am a motivated and detail-oriented Computer Science student currently studying at the University of Central Punjab (UCP). I have established a strong foundation in programming and web development, supported by formal training at the BIA Institute under the NAVTTC program and certification by Pearson Certiport.</p>
+            <br>
+            <p>My experience spans from building functional C++ based applications in academic environments to designing dynamic, user-friendly web solutions. I am deeply passionate about creating efficient software and am eager to contribute to innovative development teams while continuously growing within the software industry.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title"><span>02.</span> Technical Arsenal</h2>
+        <div class="skills-grid fade-in">
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">🌐</span>
+                HTML5 & CSS3 
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">⚡</span>
+                JavaScript 
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">📱</span>
+                Responsive Design 
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">⚙️</span>
+                Server-Side Dev 
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">🗄️</span>
+                Relational Database
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">💻</span>
+                C++ Programming 
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">🔄</span>
+                Git & GitHub 
+            </div>
+            <div class="skill-tag">
+                <span style="font-size: 2rem;">🧩</span>
+                SDLC & Logic 
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title"><span>03.</span> Academic Builds</h2>
+        <div class="project-grid">
+            <div class="glass-panel project-card fade-in">
+                <div>
+                    <h3>Inventory Management System </h3>
+                    <div class="project-tech">C++ | OOP | Data Management </div>
+                    <ul>
+                        <li>Developed a comprehensive tracking solution to manage stock, items, and recordS.</li>
+                        <li>Designed a structured, menu-driven interface for efficient monitoring.</li>
+                    </ul>
+                </div>
+               
+            </div>
+
+            <div class="glass-panel project-card fade-in">
+                <div>
+                    <h3>Twitter Model Simulation </h3>
+                    <div class="project-tech">C++ | Console App | Data Structures </div>
+                    <ul>
+                        <li>Built a simulation of a social media platform featuring posting and user feeds.</li>
+                        <li>Applied complex data structures for efficient user and post management.</li>
+                    </ul>
+                </div>
+               
+            </div>
+
+            <div class="glass-panel project-card fade-in">
+                <div>
+                    <h3>Hospital Management System </h3>
+                    <div class="project-tech">C++ | Architecture Design </div>
+                    <ul>
+                        <li>Designed an application to manage patient records, appointments, and staff data.</li>
+                        <li>Ensured data integrity and clean separation of responsibilities across OOP classes.</li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <h2 class="section-title"><span>04.</span> Education Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item left fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2024 - Present </div>
+                    <h3>Bachelor of Science in Computer Science </h3>
+                    <p class="project-tech">University of Central Punjab (UCP) </p>
+                </div>
+            </div>
+            <div class="timeline-item right fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2023 - 2024 </div>
+                    <h3>Intermediate (Pre-Engineering) </h3>
+                    <p class="project-tech">Forman Christian College, Lahore </p>
+                </div>
+            </div>
+            <div class="timeline-item left fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2015 - 2022 </div>
+                    <h3>Secondary School Education (SSC) </h3>
+                    <p class="project-tech">The Punjab School, Lahore </p>
+                </div>
+            </div>
+            <div class="timeline-item right fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-date">2008 - 2015</div>
+                    <h3>Primary & Middle School Education </h3>
+                    <p class="project-tech">Pakistan International School - Al Khobar </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications" style="padding-top: 2rem;">
+        <h2 class="section-title"><span>05.</span> Certifications</h2>
+        <div class="cert-container">
+            <div class="glass-panel cert-card fade-in">
+                <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">🏆</span>
+                <h3>Pearson Certiport Certification </h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">Internationally recognized certification validating web development and IT skills. Issued by Pearson VUE / Certiport.</p>
+            </div>
+            <div class="glass-panel cert-card fade-in">
+                <span style="font-size: 3rem; display: block; margin-bottom: 1rem;">📜</span>
+                <h3>Web Development Certification </h3>
+                <p style="color: var(--text-muted); margin-top: 1rem;">BIA Institute (NAVTTC). Completed an intensive government-backed program gaining practical skills in front-end and back-end technologies.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
